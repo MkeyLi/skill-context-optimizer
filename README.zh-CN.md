@@ -18,125 +18,40 @@
 
 ## 安装方式
 
-在把这个 skill 放进 Claude Code 或 OpenClaw 之前，用户需要先把本仓库下载到本地。`cp -R skill-context-optimizer ...` 这一步只有在你已经克隆仓库或下载 ZIP 后才成立。
-
-如果你希望直接把一段话丢给 Claude Code 或 OpenClaw，让 agent 自己完成安装，更适合在 README 里提供“可直接粘贴的安装指令”，而不是只给终端命令。下面这些内容可以直接复制给 agent，它会自己去拉取 GitHub 仓库并安装。
+只保留可直接贴给 agent 的安装指令。把下面任意一段直接发给 Claude Code 或 OpenClaw，agent 就会自行拉取 GitHub 仓库，并把 `skill-context-optimizer/` 放到正确的技能目录里。
 
 ### 直接贴给 Claude Code
 
-安装到个人 skills 目录：
-
 ```text
-请把 https://github.com/MkeyLi/skill-context-optimizer 里的 skill 安装到我的 Claude Code 个人 skills 目录 ~/.claude/skills/skill-context-optimizer。
+请把 https://github.com/MkeyLi/skill-context-optimizer 安装成 Claude Code skill。
 
 要求：
-- 只复制仓库里的 skill-context-optimizer/ 目录。
-- 不要复制 validation/ 或其他仓库级文件。
-- 如果目标目录已经存在，先告诉我会发生什么变化，再决定是否覆盖。
-- 安装完成后确认 SKILL.md 存在。
-- 最后提醒我需要重启 Claude Code 才会重新加载这个 skill。
-```
-
-只安装到当前项目：
-
-```text
-请把 https://github.com/MkeyLi/skill-context-optimizer 里的 skill 安装到当前项目的 .claude/skills/skill-context-optimizer 目录。
-
-要求：
-- 只复制仓库里的 skill-context-optimizer/ 目录。
-- 不要复制 validation/ 或其他仓库级文件。
-- 如果目标目录已经存在，先告诉我会发生什么变化，再决定是否覆盖。
-- 安装完成后确认 .claude/skills/skill-context-optimizer/SKILL.md 存在。
-- 不要修改其他 skills。
+- 默认安装到 ~/.claude/skills/skill-context-optimizer
+- 如果我说“只装到当前项目”，则安装到 .claude/skills/skill-context-optimizer
+- 只复制仓库里的 skill-context-optimizer/ 目录
+- 不要复制 validation/ 或其他仓库级文件
+- 如果目标目录已经存在，覆盖前先告诉我会变更什么
+- 安装完成后确认 SKILL.md 存在
+- 不要修改其他 skills
+- 安装完成后提醒我重新开启 Claude Code 会话
 ```
 
 ### 直接贴给 OpenClaw
 
-安装为当前机器共用 skill：
-
 ```text
-请把 https://github.com/MkeyLi/skill-context-optimizer 里的 skill 安装到 OpenClaw 的 ~/.openclaw/skills/skill-context-optimizer。
+请把 https://github.com/MkeyLi/skill-context-optimizer 安装成 OpenClaw skill。
 
 要求：
-- 只复制仓库里的 skill-context-optimizer/ 目录。
-- 不要复制 validation/ 或其他仓库级文件。
-- 如果目标目录已经存在，先告诉我会发生什么变化，再决定是否覆盖。
-- 安装完成后确认 SKILL.md 存在。
-- 最后提醒我需要重新开启一个 OpenClaw 会话，确保新 skill 被加载。
+- 默认安装到 ~/.openclaw/skills/skill-context-optimizer
+- 如果我说“只装到当前工作区”，则安装到 skills/skill-context-optimizer
+- 如果我说“装成 agent skill”，则按场景安装到 ~/.agents/skills/skill-context-optimizer 或 .agents/skills/skill-context-optimizer
+- 只复制仓库里的 skill-context-optimizer/ 目录
+- 不要复制 validation/ 或其他仓库级文件
+- 如果目标目录已经存在，覆盖前先告诉我会变更什么
+- 安装完成后确认 SKILL.md 存在
+- 不要修改其他 skills
+- 安装完成后提醒我重新开启 OpenClaw 会话
 ```
-
-只安装到当前工作区：
-
-```text
-请把 https://github.com/MkeyLi/skill-context-optimizer 里的 skill 安装到当前工作区的 skills/skill-context-optimizer 目录，供 OpenClaw 使用。
-
-要求：
-- 只复制仓库里的 skill-context-optimizer/ 目录。
-- 不要复制 validation/ 或其他仓库级文件。
-- 如果目标目录已经存在，先告诉我会发生什么变化，再决定是否覆盖。
-- 安装完成后确认 skills/skill-context-optimizer/SKILL.md 存在。
-- 不要修改其他 skills。
-```
-
-### 先获取仓库文件
-
-方式一：直接克隆仓库
-
-```bash
-git clone https://github.com/MkeyLi/skill-context-optimizer.git
-cd skill-context-optimizer
-```
-
-方式二：在 GitHub 页面下载 ZIP，解压后进入目录。无论使用哪种方式，本地都应该先有一个包含 `SKILL.md` 的 `skill-context-optimizer/` 目录。
-
-### Claude Code
-
-Claude Code 的 skills 可以放在个人目录，也可以放在当前项目的 `.claude/skills/` 目录。
-
-1. 如未安装 Claude Code，先安装：
-   ```bash
-   npm install -g @anthropic-ai/claude-code
-   ```
-2. 克隆或解压本仓库后，安装为个人 skill：
-   ```bash
-   mkdir -p ~/.claude/skills
-   cp -R ./skill-context-optimizer ~/.claude/skills/skill-context-optimizer
-   ```
-3. 或者只在当前仓库内安装：
-   ```bash
-   mkdir -p .claude/skills
-   cp -R ./skill-context-optimizer .claude/skills/skill-context-optimizer
-   ```
-4. 重新开启一个 Claude Code 会话，然后直接用 `/skill-context-optimizer` 调用，或者让 Claude 在匹配场景下自动加载。
-
-### OpenClaw
-
-OpenClaw 支持从 `~/.openclaw/skills`、`~/.agents/skills`、`<workspace>/.agents/skills` 和 `<workspace>/skills` 加载 skills。
-
-1. 如未安装 OpenClaw，先完成 OpenClaw 安装。
-2. 克隆或解压本仓库后，安装为当前机器上所有工作区共用的 skill：
-   ```bash
-   mkdir -p ~/.openclaw/skills
-   cp -R ./skill-context-optimizer ~/.openclaw/skills/skill-context-optimizer
-   ```
-3. 或者安装为当前用户的 agent skill：
-   ```bash
-   mkdir -p ~/.agents/skills
-   cp -R ./skill-context-optimizer ~/.agents/skills/skill-context-optimizer
-   ```
-4. 或者只安装到当前 OpenClaw 工作区：
-   ```bash
-   mkdir -p ./skills
-   cp -R ./skill-context-optimizer ./skills/skill-context-optimizer
-   ```
-5. 或者安装为当前项目的 agent skill：
-   ```bash
-   mkdir -p ./.agents/skills
-   cp -R ./skill-context-optimizer ./.agents/skills/skill-context-optimizer
-   ```
-6. 重新开启一个 OpenClaw 会话，使 skill 被重新加载。
-
-补充说明：如果这个 skill 以后发布到 ClawHub，也可以通过 `openclaw skills install <skill-slug>` 安装；但当前这个仓库是通过 GitHub 分发的，所以应先克隆仓库或下载 ZIP，再复制 skill 目录。
 
 ### 参考文档
 
