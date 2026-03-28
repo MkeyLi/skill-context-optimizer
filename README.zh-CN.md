@@ -18,7 +18,7 @@
 
 ## 安装方式
 
-只保留可直接贴给 agent 的安装指令。把下面任意一段直接发给 Claude Code 或 OpenClaw，agent 就会自行拉取 GitHub 仓库，并把 `skill-context-optimizer/` 放到正确的技能目录里。
+把下面任意一段直接发给 Claude Code 或 OpenClaw，agent 就会自行拉取 GitHub 仓库，并把 `skill-context-optimizer/` 放到正确的技能目录里。
 
 ### 直接贴给 Claude Code
 
