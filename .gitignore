@@ -1,0 +1,5 @@
+.deps/
+sources/
+validation/workdirs/
+validation/backups/
+.DS_Store

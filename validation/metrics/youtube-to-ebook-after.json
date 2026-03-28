@@ -1,0 +1,19 @@
+[
+  {
+    "name": "youtube-to-ebook",
+    "path": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/youtube-to-ebook",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/youtube-to-ebook/SKILL.md",
+    "metrics": {
+      "lines": 43,
+      "words": 309,
+      "description_chars": 333,
+      "headings": 4,
+      "code_fences": 0,
+      "table_lines": 5,
+      "blockquote_lines": 0,
+      "links": 6
+    },
+    "issues": [],
+    "summary": "SKILL.md is 43 lines and shows no heuristic bloat issues."
+  }
+]

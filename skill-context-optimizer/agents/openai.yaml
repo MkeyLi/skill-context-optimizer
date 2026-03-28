@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Context Optimizer"
+  short_description: "Compress bloated skills safely"
+  default_prompt: "Use $skill-context-optimizer to analyze and safely compress installed skills without harming behavior."

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "frontend-slides",
+    "path": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/frontend-slides",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/frontend-slides/SKILL.md",
+    "metrics": {
+      "lines": 46,
+      "words": 343,
+      "description_chars": 327,
+      "headings": 4,
+      "code_fences": 0,
+      "table_lines": 0,
+      "blockquote_lines": 0,
+      "links": 4
+    },
+    "issues": [],
+    "summary": "SKILL.md is 46 lines and shows no heuristic bloat issues."
+  }
+]

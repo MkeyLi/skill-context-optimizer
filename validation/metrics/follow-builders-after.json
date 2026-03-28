@@ -1,0 +1,19 @@
+[
+  {
+    "name": "follow-builders",
+    "path": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/follow-builders",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/follow-builders/SKILL.md",
+    "metrics": {
+      "lines": 44,
+      "words": 294,
+      "description_chars": 339,
+      "headings": 5,
+      "code_fences": 1,
+      "table_lines": 7,
+      "blockquote_lines": 0,
+      "links": 5
+    },
+    "issues": [],
+    "summary": "SKILL.md is 44 lines and shows no heuristic bloat issues."
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "youtube-to-ebook",
+    "path": "/Users/pipi/Documents/Comp_Skill/sources/youtube-to-ebook",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/sources/youtube-to-ebook/SKILL.md",
+    "metrics": {
+      "lines": 171,
+      "words": 555,
+      "description_chars": 83,
+      "headings": 20,
+      "code_fences": 8,
+      "table_lines": 5,
+      "blockquote_lines": 0,
+      "links": 0
+    },
+    "issues": [
+      {
+        "id": "onboarding-hot-path",
+        "label": "Onboarding in hot path",
+        "severity": "high",
+        "change_type": "safe-structural",
+        "hits": 1,
+        "recommendation": "Move onboarding copy to references/start.md and keep only detection plus routing in SKILL.md."
+      },
+      {
+        "id": "example-load",
+        "label": "Large example or command load",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 5,
+        "recommendation": "Keep one canonical template in SKILL.md and move long examples into references or scripts."
+      },
+      {
+        "id": "trigger-metadata",
+        "label": "Trigger metadata needs work",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 1,
+        "recommendation": "Make the frontmatter description say both what the skill does and when to use it."
+      }
+    ],
+    "summary": "SKILL.md is 171 lines with likely hot-path waste in: Onboarding in hot path, Large example or command load, Trigger metadata needs work."
+  }
+]

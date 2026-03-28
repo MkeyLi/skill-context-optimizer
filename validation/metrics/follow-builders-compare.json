@@ -1,0 +1,20 @@
+{
+  "before": {
+    "lines": 466,
+    "words": 2851,
+    "reference_files": 0,
+    "script_files": 5
+  },
+  "after": {
+    "lines": 44,
+    "words": 294,
+    "reference_files": 4,
+    "script_files": 5
+  },
+  "delta": {
+    "lines": -422,
+    "words": -2557,
+    "reference_files": 4,
+    "script_files": 0
+  }
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "codebase-to-course",
+    "path": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/codebase-to-course",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/validation/workdirs/codebase-to-course/SKILL.md",
+    "metrics": {
+      "lines": 45,
+      "words": 401,
+      "description_chars": 360,
+      "headings": 3,
+      "code_fences": 0,
+      "table_lines": 0,
+      "blockquote_lines": 0,
+      "links": 5
+    },
+    "issues": [],
+    "summary": "SKILL.md is 45 lines and shows no heuristic bloat issues."
+  }
+]

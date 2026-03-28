@@ -1,0 +1,84 @@
+[
+  {
+    "name": "frontend-slides",
+    "path": "/Users/pipi/Documents/Comp_Skill/sources/frontend-slides",
+    "skill_md": "/Users/pipi/Documents/Comp_Skill/sources/frontend-slides/SKILL.md",
+    "metrics": {
+      "lines": 322,
+      "words": 2868,
+      "description_chars": 311,
+      "headings": 21,
+      "code_fences": 3,
+      "table_lines": 23,
+      "blockquote_lines": 0,
+      "links": 12
+    },
+    "issues": [
+      {
+        "id": "onboarding-hot-path",
+        "label": "Onboarding in hot path",
+        "severity": "high",
+        "change_type": "safe-structural",
+        "hits": 1,
+        "recommendation": "Move onboarding copy to references/start.md and keep only detection plus routing in SKILL.md."
+      },
+      {
+        "id": "variant-sprawl",
+        "label": "Platform or delivery branch sprawl",
+        "severity": "high",
+        "change_type": "safe-structural",
+        "hits": 20,
+        "recommendation": "Convert branch-heavy prose into a compact routing table plus variant references."
+      },
+      {
+        "id": "philosophy-load",
+        "label": "Long philosophy or manifesto in hot path",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 1,
+        "recommendation": "Keep actionable invariants in SKILL.md and move broad rationale or teaching philosophy into references."
+      },
+      {
+        "id": "hardcoded-copy",
+        "label": "Hardcoded user-facing copy",
+        "severity": "medium",
+        "change_type": "content-sensitive",
+        "hits": 4,
+        "recommendation": "Replace long speeches with intent-level constraints unless exact wording is essential."
+      },
+      {
+        "id": "example-load",
+        "label": "Large example or command load",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 4,
+        "recommendation": "Keep one canonical template in SKILL.md and move long examples into references or scripts."
+      },
+      {
+        "id": "eager-reads",
+        "label": "Unconditional file-loading instructions",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 3,
+        "recommendation": "Gate supporting-file reads by phase or branch so cold-path files stay cold."
+      },
+      {
+        "id": "high-cost-defaults",
+        "label": "High-cost actions on the default path",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 1,
+        "recommendation": "Keep expensive actions behind explicit conditions instead of default onboarding or delivery flow."
+      },
+      {
+        "id": "oversized-skill-md",
+        "label": "Oversized SKILL.md",
+        "severity": "medium",
+        "change_type": "safe-structural",
+        "hits": 322,
+        "recommendation": "Shrink the hot path and route detail into references before the file grows further."
+      }
+    ],
+    "summary": "SKILL.md is 322 lines with likely hot-path waste in: Onboarding in hot path, Platform or delivery branch sprawl, Long philosophy or manifesto in hot path."
+  }
+]
