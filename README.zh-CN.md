@@ -27,13 +27,10 @@
 
 要求：
 - 默认安装到 ~/.claude/skills/skill-context-optimizer
-- 如果我说“只装到当前项目”，则安装到 .claude/skills/skill-context-optimizer
 - 只复制仓库里的 skill-context-optimizer/ 目录
 - 不要复制 validation/ 或其他仓库级文件
-- 如果目标目录已经存在，覆盖前先告诉我会变更什么
 - 安装完成后确认 SKILL.md 存在
 - 不要修改其他 skills
-- 安装完成后提醒我重新开启 Claude Code 会话
 ```
 
 ### 直接贴给 OpenClaw
@@ -43,14 +40,10 @@
 
 要求：
 - 默认安装到 ~/.openclaw/skills/skill-context-optimizer
-- 如果我说“只装到当前工作区”，则安装到 skills/skill-context-optimizer
-- 如果我说“装成 agent skill”，则按场景安装到 ~/.agents/skills/skill-context-optimizer 或 .agents/skills/skill-context-optimizer
 - 只复制仓库里的 skill-context-optimizer/ 目录
 - 不要复制 validation/ 或其他仓库级文件
-- 如果目标目录已经存在，覆盖前先告诉我会变更什么
 - 安装完成后确认 SKILL.md 存在
 - 不要修改其他 skills
-- 安装完成后提醒我重新开启 OpenClaw 会话
 ```
 
 ### 参考文档
