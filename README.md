@@ -20,6 +20,64 @@
 
 Before copying the skill into Claude Code or OpenClaw, you need a local copy of this repository. The `cp -R skill-context-optimizer ...` command only works after you have cloned or downloaded the repo.
 
+If you want the agent to do the installation for you, the easiest approach is to paste one of the prompts below directly into Claude Code or OpenClaw. These are agent instructions, not built-in product commands.
+
+### Paste into Claude Code
+
+Install as a personal skill:
+
+```text
+Install the skill from https://github.com/MkeyLi/skill-context-optimizer into my personal Claude Code skills directory at ~/.claude/skills/skill-context-optimizer.
+
+Requirements:
+- Only copy the repository's skill-context-optimizer/ folder.
+- Do not copy validation/ or other repo-level files.
+- If the target already exists, show me the diff or explain what would change before overwriting it.
+- Confirm that SKILL.md exists after installation.
+- Tell me that I need to restart Claude Code for the new skill to load.
+```
+
+Install only for the current project:
+
+```text
+Install the skill from https://github.com/MkeyLi/skill-context-optimizer into this project's .claude/skills/skill-context-optimizer directory.
+
+Requirements:
+- Only copy the repository's skill-context-optimizer/ folder.
+- Do not copy validation/ or other repo-level files.
+- If the target already exists, show me the diff or explain what would change before overwriting it.
+- Confirm that .claude/skills/skill-context-optimizer/SKILL.md exists after installation.
+- Do not modify any other skills.
+```
+
+### Paste into OpenClaw
+
+Install as a shared machine-wide skill:
+
+```text
+Install the skill from https://github.com/MkeyLi/skill-context-optimizer into ~/.openclaw/skills/skill-context-optimizer for OpenClaw.
+
+Requirements:
+- Only copy the repository's skill-context-optimizer/ folder.
+- Do not copy validation/ or other repo-level files.
+- If the target already exists, show me the diff or explain what would change before overwriting it.
+- Confirm that SKILL.md exists after installation.
+- Tell me that I need to start a new OpenClaw session for the skill to load.
+```
+
+Install only for the current workspace:
+
+```text
+Install the skill from https://github.com/MkeyLi/skill-context-optimizer into this workspace's skills/skill-context-optimizer directory for OpenClaw.
+
+Requirements:
+- Only copy the repository's skill-context-optimizer/ folder.
+- Do not copy validation/ or other repo-level files.
+- If the target already exists, show me the diff or explain what would change before overwriting it.
+- Confirm that skills/skill-context-optimizer/SKILL.md exists after installation.
+- Do not modify any other skills.
+```
+
 ### Get the files
 
 Option 1: clone the repository
