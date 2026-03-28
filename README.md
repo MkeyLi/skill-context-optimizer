@@ -1,6 +1,6 @@
 # Skill Context Optimizer
 
-`skill-context-optimizer` is a Codex/OpenClaw skill for compressing other skills without weakening their behavior. It focuses on context engineering: keep trigger-critical routing in `SKILL.md`, move cold-path detail into `references/`, move deterministic operations into `scripts/`, and preserve rollback at every step.
+`skill-context-optimizer` is a skill for Claude Code and OpenClaw that compresses other skills without weakening their behavior. It focuses on context engineering: keep trigger-critical routing in `SKILL.md`, move cold-path detail into `references/`, move deterministic operations into `scripts/`, and preserve rollback at every step.
 
 ## Repository layout
 
@@ -18,6 +18,19 @@
 
 ## Install
 
+Before copying the skill into Claude Code or OpenClaw, you need a local copy of this repository. The `cp -R skill-context-optimizer ...` command only works after you have cloned or downloaded the repo.
+
+### Get the files
+
+Option 1: clone the repository
+
+```bash
+git clone https://github.com/MkeyLi/skill-context-optimizer.git
+cd skill-context-optimizer
+```
+
+Option 2: download the ZIP from GitHub, extract it locally, and enter the extracted folder. In both cases, you should end up with a local `skill-context-optimizer/` directory that contains `SKILL.md`.
+
 ### Claude Code
 
 Claude Code skills live in either your personal skills directory or a project-local `.claude/skills/` directory.
@@ -26,34 +39,46 @@ Claude Code skills live in either your personal skills directory or a project-lo
    ```bash
    npm install -g @anthropic-ai/claude-code
    ```
-2. Install this skill as a personal skill:
+2. After cloning or extracting this repository, install this skill as a personal skill:
    ```bash
    mkdir -p ~/.claude/skills
-   cp -R skill-context-optimizer ~/.claude/skills/skill-context-optimizer
+   cp -R ./skill-context-optimizer ~/.claude/skills/skill-context-optimizer
    ```
 3. Or install it only for the current repository:
    ```bash
    mkdir -p .claude/skills
-   cp -R skill-context-optimizer .claude/skills/skill-context-optimizer
+   cp -R ./skill-context-optimizer .claude/skills/skill-context-optimizer
    ```
 4. Start a new Claude Code session and invoke it directly with `/skill-context-optimizer`, or let Claude load it when relevant.
 
 ### OpenClaw
 
-OpenClaw loads skills from a shared local directory and from workspace-local `skills/` folders.
+OpenClaw can load skills from `~/.openclaw/skills`, `~/.agents/skills`, `<workspace>/.agents/skills`, and `<workspace>/skills`.
 
 1. Install OpenClaw if needed.
-2. Install this skill for all OpenClaw workspaces on the machine:
+2. After cloning or extracting this repository, install this skill as a shared skill for all workspaces on the machine:
    ```bash
    mkdir -p ~/.openclaw/skills
-   cp -R skill-context-optimizer ~/.openclaw/skills/skill-context-optimizer
+   cp -R ./skill-context-optimizer ~/.openclaw/skills/skill-context-optimizer
    ```
-3. Or install it only in the current OpenClaw workspace:
+3. Or install it as a personal agent skill:
+   ```bash
+   mkdir -p ~/.agents/skills
+   cp -R ./skill-context-optimizer ~/.agents/skills/skill-context-optimizer
+   ```
+4. Or install it only for the current workspace:
    ```bash
    mkdir -p ./skills
-   cp -R skill-context-optimizer ./skills/skill-context-optimizer
+   cp -R ./skill-context-optimizer ./skills/skill-context-optimizer
    ```
-4. Start a new OpenClaw session so the skill is reloaded.
+5. Or install it as a project agent skill:
+   ```bash
+   mkdir -p ./.agents/skills
+   cp -R ./skill-context-optimizer ./.agents/skills/skill-context-optimizer
+   ```
+6. Start a new OpenClaw session so the skill is reloaded.
+
+Note: if this skill is ever published to ClawHub, OpenClaw can install it with `openclaw skills install <skill-slug>`. This repository is currently distributed through GitHub, so users should clone or download it first.
 
 ### References
 
