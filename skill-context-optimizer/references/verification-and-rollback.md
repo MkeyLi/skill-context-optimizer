@@ -1,61 +1,60 @@
-# Verification And Rollback
+# 验证与回退
 
-Use this reference after the plan is ready.
+当压缩方案已经定下来之后，按这份文档做确认、验证和回退准备。
 
-## Approval Gate
+## 用户确认前必须展示的内容
 
-Before editing, show:
+正式修改前，至少要告诉用户这些内容：
 
-1. the target skills
-2. the main hot-path problems per skill
-3. the planned safe structural edits
-4. the planned content-sensitive edits
+1. 这次要处理哪些 skills
+2. 每个 skill 目前最主要的问题
+3. 准备做哪些“纯结构整理”
+4. 哪些改动可能会碰到原意
+5. 明确说明：目标里不包含 Claude Code 或 OpenClaw 自带的内置 skills
 
-Wait for the user's approval before executing any content-sensitive compression.
+凡是可能改动原意的压缩，都必须先等用户确认。
 
-## Snapshot
+## 备份快照
 
-Create a snapshot before modifying files:
+修改前先做快照备份：
 
 ```bash
 python scripts/snapshot_skills.py <skill-path>...
 ```
 
-The command prints a manifest path. Keep it in the final report.
+这个命令会输出一个 manifest 路径。最后汇报结果时要把它一并告诉用户。
 
-## Validation Checklist
+## 修改后的检查清单
 
-After compression:
+压缩完成后，至少检查下面这些事：
 
-1. `SKILL.md` still has valid frontmatter.
-2. All links from `SKILL.md` point to real files.
-3. Variant-specific details remain reachable from `SKILL.md`.
-4. Trigger coverage in the frontmatter is still specific.
-5. The edited skill passes:
+1. `SKILL.md` 的 frontmatter 仍然合法。
+2. `SKILL.md` 里所有链接都能指向真实文件。
+3. 被移出去的分支细节，仍然能从 `SKILL.md` 找到入口。
+4. frontmatter 里的触发描述仍然足够具体。
+5. 如果你的环境里有 skill 结构校验工具，就跑一次：
 
 ```bash
-python /Users/pipi/.codex/skills/.system/skill-creator/scripts/quick_validate.py <skill-dir>
+python quick_validate.py <skill-dir>
 ```
 
-6. Before and after metrics show a useful reduction or cleaner issue profile.
+6. 前后指标确实有改善，或者至少问题画像更干净了。
 
-## Rollback
+## 回退
 
-Restore from a manifest with:
+如果用户要恢复原状，用 manifest 执行回退：
 
 ```bash
 python scripts/restore_snapshot.py <manifest.json>
 ```
 
-The restore script moves the current target to a timestamped `pre-restore` folder before copying the backup back into place. This keeps the rollback itself reversible.
+回退脚本会先把当前版本挪到一个带时间戳的 `pre-restore` 目录里，再把备份拷回来。这样即使执行了回退，这次回退动作本身也还是可逆的。
 
-## Final Report
+## 最终汇报至少包含
 
-Always include:
-
-- edited skills
-- before and after `SKILL.md` line counts
-- major structural moves
-- any content-sensitive decisions that were preserved or deferred
-- validator results
-- the exact rollback command
+- 改了哪些 skills
+- 每个 `SKILL.md` 压缩前后的行数
+- 这次最关键的结构调整是什么
+- 哪些涉及原意的改动被保留、延后或放弃了
+- 校验结果
+- 具体的回退命令

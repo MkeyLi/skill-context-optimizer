@@ -100,7 +100,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--installed",
         action="store_true",
-        help="Analyze installed user skills from ${CODEX_HOME:-~/.codex}/skills",
+        help="Analyze installed Claude Code and OpenClaw skills from standard personal and workspace directories",
     )
     parser.add_argument(
         "--root",
@@ -117,9 +117,17 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def default_skill_root() -> Path:
-    codex_home = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
-    return codex_home / "skills"
+def default_skill_roots() -> list[Path]:
+    home = Path.home()
+    cwd = Path.cwd()
+    return [
+        home / ".claude" / "skills",
+        cwd / ".claude" / "skills",
+        home / ".openclaw" / "skills",
+        home / ".agents" / "skills",
+        cwd / ".agents" / "skills",
+        cwd / "skills",
+    ]
 
 
 def discover_skills(roots: list[Path]) -> list[Path]:
@@ -128,7 +136,7 @@ def discover_skills(roots: list[Path]) -> list[Path]:
         if not root.exists():
             continue
         for child in sorted(root.iterdir()):
-            if child.name == ".system":
+            if child.name in {".system", "builtin", "builtins"}:
                 continue
             if (child / "SKILL.md").is_file():
                 found.append(child)
@@ -139,12 +147,14 @@ def resolve_targets(args: argparse.Namespace) -> list[Path]:
     targets = [Path(path).expanduser().resolve() for path in args.paths]
     roots = [Path(root).expanduser().resolve() for root in args.root]
     if args.installed:
-        roots.append(default_skill_root().resolve())
+        roots.extend(root.resolve() for root in default_skill_roots())
     if roots:
         targets.extend(discover_skills(roots))
     unique: list[Path] = []
     seen: set[Path] = set()
     for target in targets:
+        if any(part in {".system", "builtin", "builtins"} for part in target.parts):
+            continue
         if target not in seen:
             seen.add(target)
             unique.append(target)

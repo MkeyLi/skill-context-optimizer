@@ -1,72 +1,72 @@
-# Rewrite Patterns
+# 常见改写方式
 
-Use these patterns when converting a bloated skill into a progressive-disclosure skill.
+把一个很臃肿的 skill 改写成“按需展开”的结构时，可以优先参考下面这些模式。
 
-## Pattern Matrix
+## 问题与改法对照表
 
-| Symptom in `SKILL.md` | Rewrite | Preferred destination |
+| `SKILL.md` 里的常见问题 | 推荐改法 | 适合移到哪里 |
 | --- | --- | --- |
-| First-run welcome, setup tour, long onboarding copy | Keep detection + route only | `references/start.md` |
-| Platform branches such as OpenClaw vs Claude Code vs Cursor | Replace prose with a compact decision table | `references/platform-variants.md` |
-| Delivery, cron, language, hosting, export branches | Convert to pseudo-schema or decision matrix | `references/variants.md` |
-| Full prompt copy or user speech templates | Keep intent constraints and placeholders in `SKILL.md`; move long samples out | `references/prompt-templates.md` |
-| Repeated commands or shell blocks | Wrap into scripts when deterministic | `scripts/` |
-| Long troubleshooting | Keep one-line failure routing in `SKILL.md`; move fixes out | `references/troubleshooting.md` |
-| Many examples | Keep one template or parameter rule | `references/examples.md` |
-| Mandatory full file reads | Add phase-based or branch-based read conditions | `SKILL.md` plus linked references |
+| 首次欢迎语、配置引导、很长的 onboarding 文案 | 主文件里只保留“何时需要 onboarding”和入口 | `references/start.md` |
+| OpenClaw / Claude Code 之类的平台分支 | 把长篇说明改成紧凑的决策表 | `references/platform-variants.md` |
+| 交付方式、cron、语言、托管、导出这些分支 | 改成 pseudo-schema 或决策矩阵 | `references/variants.md` |
+| 完整 prompt 文案或整段用户话术模板 | 主文件里只保留意图约束和占位符，长样例移出去 | `references/prompt-templates.md` |
+| 重复出现的命令块或 shell 流程 | 如果操作够确定，就改成脚本 | `scripts/` |
+| 很长的排错说明 | 主文件里只保留一句“遇到这类问题去哪里看”，详细修复移出去 | `references/troubleshooting.md` |
+| 一长串示例 | 只留一个模板或参数生成规则 | `references/examples.md` |
+| 强制要求把很多文件一次性全读完 | 改成按阶段、按分支加载 | `SKILL.md` 加引用文档 |
 
-## Preferred Compression Moves
+## 优先采用的整理方式
 
-### Onboarding to route-only
+### 把 onboarding 改成“只负责分流”
 
-Before:
-- several paragraphs of introduction
-- a multi-question setup flow in `SKILL.md`
+改之前：
+- 几大段开场介绍
+- 在 `SKILL.md` 里直接写完整提问流程
 
-After:
-- one line saying when onboarding is needed
-- one link to `references/start.md`
-- keep only the state-detection rule in `SKILL.md`
+改之后：
+- 主文件里只写“什么情况下需要 onboarding”
+- 加一个指向 `references/start.md` 的入口
+- 在 `SKILL.md` 里只保留状态判断规则
 
-### Branch-heavy prose to table
+### 把很多分支的自然语言改成表格
 
-Before:
-- separate sections for Telegram, email, stdout, OpenClaw, cron, weekly, daily
+改之前：
+- Telegram、email、stdout、OpenClaw、cron、weekly、daily 各写一大段
 
-After:
-- one selection table
-- one schema that lists the fields each branch needs
-- branch-specific instructions moved into references
+改之后：
+- 一张分流表
+- 一个列出各分支所需字段的 schema
+- 分支细节移到引用文档
 
-### Hardcoded speech to intent constraint
+### 把硬编码话术改成意图约束
 
-Before:
-- full paragraphs beginning with "Tell the user:"
+改之前：
+- 大段“告诉用户：……”的原话
 
-After:
-- a short constraint such as "Explain the delivery tradeoff briefly and collect channel, cadence, and timezone."
-- keep exact wording only if the behavior depends on that wording
+改之后：
+- 只保留类似“简单说明交付方式差异，并收集频道、频率、时区”的约束
+- 只有当原话本身会影响行为时，才保留原文
 
-### Examples to templates
+### 把一堆示例改成模板
 
-Before:
-- many expanded natural-language examples
+改之前：
+- 大量展开的自然语言示例
 
-After:
-- one command template
-- one argument-generation rule
-- long examples moved into references if they still add unique value
+改之后：
+- 一个命令模板
+- 一条参数生成规则
+- 真有独特价值的长示例，移到引用文档
 
-### Repeated facts to invariant list
+### 把重复事实收敛成不变量清单
 
-Before:
-- the same warning repeated in several sections
+改之前：
+- 同一条提醒在好几个章节里重复
 
-After:
-- one invariant list near the top
-- later sections refer back to the invariant by name
+改之后：
+- 在前面集中列一份不变量清单
+- 后面章节只引用这条规则，不再重复展开
 
-## Default File Layout After Compression
+## 压缩后的常见目录结构
 
 ```text
 skill-name/
@@ -80,4 +80,4 @@ skill-name/
     └── optional deterministic helpers
 ```
 
-Do not create all of these files automatically. Create only the destinations a skill actually needs.
+不要机械地把这些文件全建出来。只创建当前 skill 真正需要的那几个目标文件。

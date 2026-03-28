@@ -1,57 +1,57 @@
-# Compression Playbook
+# 压缩准则
 
-Use this reference when deciding what belongs on the hot path.
+这份文档用来判断：什么内容该留在主 `SKILL.md`，什么内容应该移出去按需读取。
 
-## Goal
+## 目标
 
-Reduce the cost of loading a skill without reducing its effectiveness.
+在不影响 skill 使用效果的前提下，尽量减少主提示词里常驻的无关内容。
 
-Treat context as three tiers:
+可以把 skill 内容分成三层来看：
 
-| Tier | Belongs here | Never put here by default |
+| 层级 | 适合放什么 | 默认不要放什么 |
 | --- | --- | --- |
-| Hot path: `SKILL.md` | trigger-critical routing, invariants, workflow skeleton, file map | onboarding scripts, long examples, full prompt copy, platform-specific branches |
-| Warm path: `references/` | chosen variants, start flows, troubleshooting, examples, schemas | unrelated branches, dead examples, duplicated philosophy |
-| Cold path: `scripts/` or assets | deterministic transforms, generators, snapshots, templates | prose that only documents what a script already guarantees |
+| 主 `SKILL.md` | 触发关键字、核心路由、必须遵守的不变量、流程骨架、文件入口 | 新手引导、长示例、整段话术、平台分支细节 |
+| `references/` | 某一分支下才会用到的说明、启动步骤、排错说明、示例、结构化规则 | 不相关的分支、已经废弃的示例、重复出现的理念说明 |
+| `scripts/` 或 assets | 确定性操作、生成器、快照工具、模板 | 只是重复解释脚本行为的长段文字 |
 
-## Core Rule
+## 核心原则
 
-Preserve behavior first. Compress structure aggressively. Compress meaning only with user approval.
+先保效果，再做整理。结构可以大胆瘦身，意思会变的地方必须先征求用户同意。
 
-## Risk Classes
+## 风险分级
 
-| Class | Typical change | Approval needed |
+| 类型 | 常见改法 | 是否先征求用户同意 |
 | --- | --- | --- |
-| Safe structural | move onboarding to `references/start.md`, split variants into tables, dedupe repeated facts, route examples to references | no, but still report the plan first |
-| Cautious structural | replace long shell recipes with script wrappers, convert prose branches to pseudo-schema, shorten long checklists | usually no if semantics are unchanged |
-| Content-sensitive | rewrite user-facing copy into constraints, collapse nuanced requirements, remove examples that carry unique intent | yes |
+| 安全的结构整理 | 把 onboarding 移到 `references/start.md`，把分支内容改成表格，去掉重复说明，把示例移到引用文档 | 不用，但仍然要先告诉用户计划 |
+| 较谨慎的结构整理 | 用脚本代替很长的命令块，把分支性自然语言改成 pseudo-schema，把长清单压短 | 如果语义没变，通常不用 |
+| 会碰到原意的改动 | 把用户话术改成约束、合并有细微差别的要求、删掉带有特殊意图的示例 | 必须先征求同意 |
 
-## Decision Rules
+## 判断规则
 
-1. Keep only the smallest text needed for correct triggering and task routing in `SKILL.md`.
-2. Keep every reference one hop away from `SKILL.md`.
-3. Prefer tables, matrices, and schemas over branch-heavy prose.
-4. Prefer scripts over repeated operational command blocks.
-5. Prefer constraints over hardcoded speeches, unless exact wording is part of the behavior.
-6. Prefer one canonical example or template rule over many expanded examples.
-7. Gate expensive actions behind conditions. Never keep them as default onboarding steps.
-8. Preserve trigger coverage. Frontmatter should stay specific even if the body gets shorter.
+1. `SKILL.md` 里只保留触发和路由真正离不开的最少文字。
+2. 所有引用文档都尽量保持“从 `SKILL.md` 一跳可达”。
+3. 能用表格、矩阵、schema 表达的，就不要展开成长篇分支说明。
+4. 重复出现的命令块，优先改成脚本。
+5. 除非原话本身就是行为要求，否则优先保留“意图约束”，不要保留整段硬编码话术。
+6. 示例只保留一个代表性的模板，没必要保留一大串展开示例。
+7. 高成本动作要加条件，不要默认塞进 onboarding 或主流程。
+8. 就算正文缩短了，frontmatter 里的触发描述也要保持明确具体。
 
-## Extra Optimization Targets
+## 常见可优化点
 
-- Unconditional "read these three files first" instructions.
-- Philosophy repeated in several sections.
-- Multiple `CRITICAL` or `NON-NEGOTIABLE` paragraphs saying the same thing.
-- Full source lists, exhaustive inventories, or entire catalog dumps shown on first run.
-- Variants mixed by platform, delivery, cron, language, hosting provider, or file type.
-- Troubleshooting blocks that only matter after a failure.
-- Output-format speeches that are better represented as a concise schema.
-- Human README content copied into `SKILL.md`.
+- 一上来就写“先把这几个文件全读一遍”。
+- 同一套理念在多个章节里来回重复。
+- 好几段 `CRITICAL` 或 `NON-NEGOTIABLE` 其实在说同一件事。
+- 第一次运行就展示完整来源列表、完整目录、整份清单。
+- 平台、交付方式、cron、语言、托管方式、文件类型等分支全混在一起写。
+- 只有报错后才会用到的排错说明。
+- 本来适合用 schema 表达，却写成整段自然语言的输出要求。
+- 把给人看的 README 内容原样抄进 `SKILL.md`。
 
-## What Not to Do
+## 不要这样做
 
-- Do not turn precise operational knowledge into vague advice.
-- Do not hide mandatory invariants in deep references.
-- Do not create a maze of nested references.
-- Do not silently delete unique edge-case handling.
-- Do not change frontmatter triggers unless the new version is at least as precise.
+- 不要把原本很明确的操作要求改成模糊建议。
+- 不要把必须遵守的不变量藏到很深的引用文档里。
+- 不要做出多层嵌套、很难找到的引用迷宫。
+- 不要静默删掉真正有用的边界情况处理。
+- 不要把 frontmatter 里的触发描述改得比原来更含糊。
